@@ -6,16 +6,8 @@
     <title>Sumbawa Expedition | whalesharktour.com</title>
     
     <!-- SEO & Meta Tags -->
-    <meta name="description" content="Exclusive 4-day whale shark encounter in Saleh Bay, Sumbawa. Join our seasonal August expedition for a once-in-a-lifetime marine adventure.">
-    <meta name="keywords" content="Whale Shark Tour, Sumbawa Expedition, Saleh Bay, Swimming with Whale Sharks, Indonesia Diving">
+    <meta name="description" content="Exclusive 4-day whale shark encounter in Saleh Bay, Sumbawa. Join our seasonal August expedition.">
     
-    <!-- OpenGraph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://whalesharktour.com/sumbawa-august">
-    <meta property="og:title" content="Sumbawa Whale Shark Expedition | August 1-4">
-    <meta property="og:description" content="Join an exclusive 4-day journey into the heart of Sumbawa. Swim with the ocean's most graceful giants in Saleh Bay.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&q=80&w=1200&h=630">
-
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- GSAP Core & ScrollTrigger -->
@@ -34,8 +26,6 @@
             --tilda-black: #000000;
             --tilda-white: #ffffff;
             --tilda-accent: #ff3c00; 
-            --ocean-blue: #023e8a;
-            --deep-navy: #03045e;
             --accent-gold: #c5a059;
         }
 
@@ -48,6 +38,7 @@
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            width: 100%;
         }
 
         h1, h2, h3, .t-title { 
@@ -56,30 +47,36 @@
         }
 
         .t-section {
-            padding-top: 120px;
-            padding-bottom: 120px;
+            padding-top: 80px;
+            padding-bottom: 80px;
         }
-
-        .t-menu__link {
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: opacity 0.3s ease;
+        @media (min-width: 768px) {
+            .t-section {
+                padding-top: 120px;
+                padding-bottom: 120px;
+            }
         }
-        .t-menu__link:hover { opacity: 0.7; }
 
         .t-btn {
             display: inline-block;
-            padding: 20px 40px;
+            padding: 18px 30px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             border-radius: 0;
             transition: all 0.3s ease;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
+            width: 100%; /* Default to full width for mobile */
+        }
+        @media (min-width: 768px) {
+            .t-btn {
+                width: auto;
+                padding: 20px 40px;
+                font-size: 14px;
+            }
         }
 
         .t-btn-primary {
@@ -90,292 +87,240 @@
         .t-btn-primary:hover {
             background-color: #e63600;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 60, 0, 0.2);
         }
 
         .t-social-widget {
             position: fixed;
-            right: 20px;
-            bottom: 40px;
+            right: 15px;
+            bottom: 25px;
             z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
         }
         .t-social-btn {
-            width: 44px;
-            height: 44px;
-            background: white;
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .brand-gold { color: var(--accent-gold); }
         
-        /* Swiper Custom Tilda Styles */
         .swiper-button-next, .swiper-button-prev {
-            color: white !important;
-            transform: scale(0.6);
-            background: rgba(0,0,0,0.2);
-            width: 60px !important;
-            height: 60px !important;
-            border-radius: 50%;
+            display: none !important; /* Hide arrows on mobile for cleaner look */
         }
-        .swiper-pagination-bullet-active {
-            background: var(--tilda-accent) !important;
+        @media (min-width: 768px) {
+            .swiper-button-next, .swiper-button-prev {
+                display: flex !important;
+                color: white !important;
+                transform: scale(0.6);
+                background: rgba(0,0,0,0.2);
+                width: 60px !important;
+                height: 60px !important;
+                border-radius: 50%;
+            }
         }
 
-        /* GSAP Reveal Styles */
         .reveal {
             opacity: 0;
+            transform: translateY(20px);
             visibility: hidden;
-            will-change: transform, opacity;
         }
 
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: border-color 0.3s ease;
-        }
-        .stat-card:hover {
-            border-color: var(--accent-gold);
-        }
-
-        .social-link {
-            transition: all 0.3s ease;
-        }
-        .social-link:hover {
-            color: var(--tilda-accent);
-            transform: translateY(-3px);
-        }
-
-        /* Pricing Hover Effect */
-        .pricing-card:hover .book-btn-white {
-            background-color: var(--tilda-accent);
-            color: white;
+        /* Prevent horizontal scroll on mobile */
+        .container-wrapper {
+            overflow-x: hidden;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
     <!-- Header -->
-    <header class="fixed top-0 w-full z-[1000] bg-white border-b border-gray-100 py-4 translate-y-[-100%] transition-transform duration-500" id="main-header">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <a href="#hero" class="font-bold text-2xl tracking-tighter uppercase">WHALESHARK<span class="brand-gold font-light">TOUR</span></a>
-            </div>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#overview" class="t-menu__link uppercase">Overview</a>
-                <a href="#gallery" class="t-menu__link uppercase">Gallery</a>
-                <a href="#itinerary" class="t-menu__link uppercase">Itinerary</a>
-                <a href="#pricing" class="t-menu__link uppercase">Pricing</a>
-                <a href="#pricing" class="t-btn-primary px-6 py-3 text-[10px] uppercase font-bold tracking-widest">Book Now</a>
+    <header class="fixed top-0 w-full z-[1000] bg-white/95 backdrop-blur-sm border-b border-gray-100 py-3" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+            <a href="#hero" class="font-bold text-lg md:text-2xl tracking-tighter uppercase">WHALESHARK<span class="brand-gold font-light">TOUR</span></a>
+            <nav class="flex items-center space-x-4 md:space-x-8">
+                <a href="#pricing" class="hidden md:block text-[11px] uppercase font-bold tracking-widest hover:text-orange-600 transition-colors">Pricing</a>
+                <a href="#pricing" class="t-btn-primary px-4 py-2 md:px-6 md:py-3 text-[10px] uppercase font-bold tracking-widest">Book Now</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center bg-black overflow-hidden mt-0" id="hero">
-        <div class="absolute inset-0 scale-110" id="hero-bg">
-            <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover opacity-60" alt="Whale Shark">
-        </div>
-        <div class="relative z-10 text-center text-white px-6 max-w-4xl" id="hero-content">
-            <h1 class="text-6xl md:text-8xl mb-8 leading-tight reveal">Saleh Bay <br> <span class="brand-gold">Expedition</span></h1>
-            <p class="text-xl md:text-2xl font-light mb-12 opacity-90 reveal">Seasonal 4-Day Journey into the heart of Sumbawa. August 1 — 4.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4 reveal">
-                <a href="#pricing" class="t-btn t-btn-primary">Reserve Your Spot</a>
-                <a href="#gallery" class="t-btn border border-white text-white hover:bg-white hover:text-black">View Gallery</a>
+    <div class="container-wrapper">
+        <!-- Hero Section -->
+        <section class="relative h-[90vh] md:h-screen flex items-center justify-center bg-black overflow-hidden" id="hero">
+            <div class="absolute inset-0" id="hero-bg">
+                <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover opacity-60" alt="Whale Shark">
             </div>
-        </div>
-    </section>
-
-    <!-- INTERESTING BLOCK: Expedition Stats -->
-    <section class="bg-black py-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="stat-card p-8 text-center reveal">
-                    <div class="text-5xl font-bold brand-gold mb-2"><span class="counter" data-target="98">0</span>%</div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Sightings Success</div>
-                </div>
-                <div class="stat-card p-8 text-center reveal">
-                    <div class="text-5xl font-bold brand-gold mb-2"><span class="counter" data-target="12">0</span></div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Max Guests</div>
-                </div>
-                <div class="stat-card p-8 text-center reveal">
-                    <div class="text-5xl font-bold brand-gold mb-2"><span class="counter" data-target="14">0</span>m</div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Avg. Giant Size</div>
-                </div>
-                <div class="stat-card p-8 text-center reveal">
-                    <div class="text-5xl font-bold brand-gold mb-2"><span class="counter" data-target="28">0</span>°</div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Water Temp</div>
+            <div class="relative z-10 text-center text-white px-4 max-w-4xl">
+                <h1 class="text-4xl md:text-8xl mb-6 leading-tight reveal">Saleh Bay <br> <span class="brand-gold">Expedition</span></h1>
+                <p class="text-lg md:text-2xl font-light mb-10 opacity-90 reveal">August 1 — 4. Seasonal 4-Day Journey.</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4 reveal">
+                    <a href="#pricing" class="t-btn t-btn-primary">Reserve Spot</a>
+                    <a href="#gallery" class="t-btn border border-white/50 text-white">View Gallery</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Swiper Gallery Block -->
-    <section id="gallery" class="bg-black py-0">
-        <div class="swiper mainGallery">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide gallery-slide relative h-[700px] overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1600" class="w-full h-full object-cover" alt="Marine Life">
-                    <div class="absolute bottom-20 left-10 md:left-20 text-white z-10">
-                        <p class="text-xs uppercase tracking-[0.3em] text-accent-gold mb-4">The Encounter</p>
-                        <h3 class="text-5xl md:text-7xl">Graceful Giants</h3>
+        <!-- Stats Block -->
+        <section class="bg-black py-12 md:py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                    <div class="p-6 md:p-8 text-center reveal border border-white/10 bg-white/5">
+                        <div class="text-3xl md:text-5xl font-bold brand-gold mb-1"><span class="counter" data-target="98">0</span>%</div>
+                        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500">Sightings</div>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                </div>
-                <div class="swiper-slide gallery-slide relative h-[700px] overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=1600" class="w-full h-full object-cover" alt="Saleh Bay">
-                    <div class="absolute bottom-20 left-10 md:left-20 text-white z-10">
-                        <p class="text-xs uppercase tracking-[0.3em] text-accent-gold mb-4">Location</p>
-                        <h3 class="text-5xl md:text-7xl">Pristine Saleh Bay</h3>
+                    <div class="p-6 md:p-8 text-center reveal border border-white/10 bg-white/5">
+                        <div class="text-3xl md:text-5xl font-bold brand-gold mb-1"><span class="counter" data-target="12">0</span></div>
+                        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500">Max Guests</div>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                </div>
-            </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-
-    <!-- Overview Block -->
-    <section id="overview" class="t-section bg-[#f5f5f5]">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <div class="w-20 h-1 bg-tilda-accent mx-auto mb-10 reveal"></div>
-            <h2 class="text-4xl md:text-5xl mb-8 reveal">Unrivaled Encounters</h2>
-            <p class="text-lg text-gray-600 mb-10 reveal">
-                Located in the remote waters of Saleh Bay, Sumbawa, we offer a unique opportunity to swim with the ocean's largest fish in a sustainable and respectful manner.
-            </p>
-        </div>
-    </section>
-
-    <!-- Itinerary Block -->
-    <section id="itinerary" class="t-section">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl text-center mb-20 reveal">Program Itinerary</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="border-t-2 border-tilda-accent pt-6 reveal">
-                    <span class="text-xs font-bold text-tilda-accent uppercase tracking-widest">Day 01</span>
-                    <h3 class="text-2xl mt-4 mb-4">Arrival</h3>
-                    <p class="text-sm text-gray-500">Pick up from Sumbawa Besar Airport (SWW). Briefing and welcome dinner.</p>
-                </div>
-                <div class="border-t-2 border-gray-200 pt-6 reveal">
-                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Day 02</span>
-                    <h3 class="text-2xl mt-4 mb-4">The Giants</h3>
-                    <p class="text-sm text-gray-500">Early morning departure for Saleh Bay. Swimming with Whale Sharks.</p>
-                </div>
-                <div class="border-t-2 border-gray-200 pt-6 reveal">
-                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Day 03</span>
-                    <h3 class="text-2xl mt-4 mb-4">Moyo Island</h3>
-                    <p class="text-sm text-gray-500">Boat trip to Moyo. Trekking to Mata Jitu Waterfall.</p>
-                </div>
-                <div class="border-t-2 border-gray-200 pt-6 reveal">
-                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Day 04</span>
-                    <h3 class="text-2xl mt-4 mb-4">Farewell</h3>
-                    <p class="text-sm text-gray-500">Local market visit and transfer to the airport.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="t-section bg-black text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl mb-4 reveal">Expedition Pricing</h2>
-                <p class="text-accent-gold uppercase tracking-[0.3em] text-xs reveal">All-Inclusive Packages</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12" id="pricing-grid">
-                <!-- Fixed Standard Cabin Button -->
-                <div class="p-12 border border-white/20 hover:border-tilda-accent transition-all duration-500 pricing-card reveal bg-zinc-900/50 flex flex-col h-full">
-                    <div class="flex-grow">
-                        <h4 class="text-2xl mb-2">Standard Cabin</h4>
-                        <p class="text-4xl brand-gold font-bold mb-8">IDR 3.650.000 <span class="text-xs font-normal text-gray-500 block">per person</span></p>
-                        <ul class="space-y-4 mb-10 text-gray-400 text-sm">
-                            <li>✓ Shared Cabin Accommodation</li>
-                            <li>✓ Full Expedition Equipment</li>
-                            <li>✓ All National Park Fees</li>
-                        </ul>
+                    <div class="p-6 md:p-8 text-center reveal border border-white/10 bg-white/5">
+                        <div class="text-3xl md:text-5xl font-bold brand-gold mb-1"><span class="counter" data-target="14">0</span>m</div>
+                        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500">Avg. Size</div>
                     </div>
-                    <a href="https://wa.me/6281234567890?text=Hello,%20I%20would%20like%20to%20book%20the%20Standard%20Cabin%20for%20the%20Sumbawa%20Expedition" target="_blank" class="t-btn t-btn-primary w-full">
-                        Book Standard
-                    </a>
-                </div>
-
-                <!-- Fixed Private Charter Button -->
-                <div class="p-12 border-2 border-tilda-accent relative pricing-card reveal bg-zinc-900/80 flex flex-col h-full">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-tilda-accent text-white px-4 py-1 text-[10px] font-bold uppercase tracking-widest">Most Popular</div>
-                    <div class="flex-grow">
-                        <h4 class="text-2xl mb-2">Private Charter</h4>
-                        <p class="text-4xl brand-gold font-bold mb-8">IDR 13.200.000 <span class="text-xs font-normal text-gray-500 block">per boat</span></p>
-                        <ul class="space-y-4 mb-10 text-gray-200 text-sm">
-                            <li>✓ Exclusive Private Vessel</li>
-                            <li>✓ Customizable Itinerary</li>
-                            <li>✓ VIP Catering & Photography</li>
-                        </ul>
+                    <div class="p-6 md:p-8 text-center reveal border border-white/10 bg-white/5">
+                        <div class="text-3xl md:text-5xl font-bold brand-gold mb-1"><span class="counter" data-target="28">0</span>°</div>
+                        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500">Water Temp</div>
                     </div>
-                    <a href="https://wa.me/6281234567890?text=Hello,%20I%20would%20like%20to%20book%20a%20Private%20Charter%20for%20the%20Sumbawa%20Expedition" target="_blank" class="t-btn bg-white text-black w-full hover:bg-tilda-accent hover:text-white transition-colors duration-300">
-                        Book Private
-                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Floating Social -->
-    <div class="t-social-widget" id="social-widget">
-        <a href="https://wa.me/6281234567890" class="t-social-btn text-green-500" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.207L6.233 18.25l3.203-1.042c.883.523 1.705.811 2.596.812 3.181 0 5.767-2.586 5.768-5.766 0-3.181-2.587-5.767-5.769-5.767zM12.031 16.5c-.863 0-1.637-.247-2.348-.714l-2.071.674.685-2.05c-.475-.724-.724-1.572-.724-2.444 0-2.352 1.913-4.265 4.266-4.265 2.352 0 4.265 1.913 4.266 4.265 0 2.352-1.913 4.265-4.265 4.265z"/></svg></a>
+        <!-- Gallery -->
+        <section id="gallery" class="bg-black">
+            <div class="swiper mainGallery">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide h-[500px] md:h-[700px] relative">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1600" class="w-full h-full object-cover" alt="Marine Life">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-6 text-white z-10">
+                            <h3 class="text-3xl md:text-6xl">Graceful Giants</h3>
+                        </div>
+                    </div>
+                    <div class="swiper-slide h-[500px] md:h-[700px] relative">
+                        <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=1600" class="w-full h-full object-cover" alt="Saleh Bay">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-6 text-white z-10">
+                            <h3 class="text-3xl md:text-6xl">Pristine Waters</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <!-- Itinerary -->
+        <section id="itinerary" class="t-section">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl text-center mb-12 md:20 reveal">Program Itinerary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="border-t-2 border-tilda-accent pt-6 reveal">
+                        <span class="text-[10px] font-bold text-tilda-accent uppercase tracking-widest">Day 01</span>
+                        <h3 class="text-xl md:text-2xl mt-2 mb-3">Arrival</h3>
+                        <p class="text-sm text-gray-500">Pick up from Sumbawa Besar (SWW). Briefing and welcome dinner.</p>
+                    </div>
+                    <div class="border-t-2 border-gray-100 pt-6 reveal">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Day 02</span>
+                        <h3 class="text-xl md:text-2xl mt-2 mb-3">The Giants</h3>
+                        <p class="text-sm text-gray-500">Full day in Saleh Bay. Multiple swimming sessions with whale sharks.</p>
+                    </div>
+                    <div class="border-t-2 border-gray-100 pt-6 reveal">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Day 03</span>
+                        <h3 class="text-xl md:text-2xl mt-2 mb-3">Island Hopping</h3>
+                        <p class="text-sm text-gray-500">Visit Moyo Island and the famous Mata Jitu Waterfall.</p>
+                    </div>
+                    <div class="border-t-2 border-gray-100 pt-6 reveal">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Day 04</span>
+                        <h3 class="text-xl md:text-2xl mt-2 mb-3">Transfer</h3>
+                        <p class="text-sm text-gray-500">Morning at leisure followed by airport transfer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="t-section bg-zinc-950 text-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl mb-4 reveal">Expedition Pricing</h2>
+                    <p class="text-accent-gold uppercase tracking-widest text-[10px] reveal">All-Inclusive Packages</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 md:gap-12">
+                    <!-- Standard -->
+                    <div class="p-8 md:p-12 border border-white/10 pricing-card reveal bg-zinc-900/40 flex flex-col">
+                        <div class="flex-grow">
+                            <h4 class="text-xl md:text-2xl mb-2">Standard Cabin</h4>
+                            <p class="text-3xl md:text-4xl brand-gold font-bold mb-6">IDR 3.650.000 <span class="text-[10px] font-normal text-gray-500 block">per person / shared cabin</span></p>
+                            <ul class="space-y-3 mb-8 text-gray-400 text-sm">
+                                <li>✓ Shared AC Cabin</li>
+                                <li>✓ All Meals & Refreshments</li>
+                                <li>✓ National Park Permits</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=I'd%20like%20to%20book%20Standard%20Cabin" target="_blank" class="t-btn t-btn-primary">
+                            Book Standard
+                        </a>
+                    </div>
+
+                    <!-- Private -->
+                    <div class="p-8 md:p-12 border-2 border-tilda-accent relative pricing-card reveal bg-zinc-900/80 flex flex-col">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-tilda-accent text-white px-3 py-1 text-[9px] font-bold uppercase tracking-widest">Exclusive</div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl md:text-2xl mb-2">Private Charter</h4>
+                            <p class="text-3xl md:text-4xl brand-gold font-bold mb-6">IDR 13.200.000 <span class="text-[10px] font-normal text-gray-500 block">per boat / max 4 pax</span></p>
+                            <ul class="space-y-3 mb-8 text-gray-200 text-sm">
+                                <li>✓ Exclusive Private Vessel</li>
+                                <li>✓ Personalized Itinerary</li>
+                                <li>✓ VIP Guide & Photo Services</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=I'd%20like%20to%20book%20Private%20Charter" target="_blank" class="t-btn bg-white text-black hover:bg-orange-600 hover:text-white">
+                            Book Private
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-white py-16 border-t border-gray-100 text-center">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="font-bold tracking-tighter text-xl mb-6 uppercase">WHALESHARK<span class="brand-gold">TOUR</span></div>
+                <div class="text-[10px] text-gray-400 uppercase tracking-widest">
+                    Whale Shark Tour &copy; 2026 | Saleh Bay, Sumbawa
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-white py-24 border-t border-gray-100 text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="font-bold tracking-tighter text-2xl mb-8">WHALESHARK<span class="brand-gold">TOUR</span></div>
-            
-            <!-- Social Media Links -->
-            <div class="flex justify-center space-x-8 mb-12">
-                <a href="#" class="social-link text-gray-400" aria-label="Instagram">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="#" class="social-link text-gray-400" aria-label="Facebook">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.324v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
-                </a>
-                <a href="#" class="social-link text-gray-400" aria-label="YouTube">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186c-.273-1.017-1.074-1.818-2.091-2.091-1.841-.495-9.407-.495-9.407-.495s-7.566 0-9.407.495c-1.017.273-1.818 1.074-2.091 2.091-.495 1.841-.495 5.794-.495 5.794s0 3.953.495 5.794c.273 1.017 1.074 1.818 2.091 2.091 1.841.495 9.407.495 9.407.495s7.566 0 9.407-.495c1.017-.273 1.818-1.074 2.091-2.091.495-1.841.495-5.794.495-5.794s0-3.953-.495-5.794zm-14.198 9.014v-6.401l6.402 3.201-6.402 3.2z"/></svg>
-                </a>
-            </div>
-
-            <div class="text-[10px] text-gray-400 uppercase tracking-widest">
-                Whale Shark Tour &copy; 2026 | All Rights Reserved
-            </div>
-        </div>
-    </footer>
+    <!-- Mobile Floating WhatsApp -->
+    <div class="t-social-widget">
+        <a href="https://wa.me/6281234567890" class="t-social-btn" target="_blank">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.207L6.233 18.25l3.203-1.042c.883.523 1.705.811 2.596.812 3.181 0 5.767-2.586 5.768-5.766 0-3.181-2.587-5.767-5.769-5.767zM12.031 16.5c-.863 0-1.637-.247-2.348-.714l-2.071.674.685-2.05c-.475-.724-.724-1.572-.724-2.444 0-2.352 1.913-4.265 4.266-4.265 2.352 0 4.265 1.913 4.266 4.265 0 2.352-1.913 4.265-4.265 4.265z"/></svg>
+        </a>
+    </div>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
         window.addEventListener('load', () => {
-            gsap.to("#main-header", { y: 0, duration: 1, ease: "power4.out", delay: 0.5 });
-
-            const heroTl = gsap.timeline();
-            heroTl.to("#hero-content .reveal", {
+            // Hero Animations
+            gsap.to(".reveal", {
                 opacity: 1,
                 visibility: "visible",
-                y: -20,
+                y: 0,
                 duration: 1,
-                stagger: 0.2,
+                stagger: 0.15,
                 ease: "power3.out"
             });
 
+            // Parallax Hero
             gsap.to("#hero-bg", {
-                yPercent: 30,
+                yPercent: 20,
                 ease: "none",
                 scrollTrigger: {
                     trigger: "#hero",
@@ -385,9 +330,8 @@
                 }
             });
 
-            // Count-up animation for stats
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
+            // Counters
+            document.querySelectorAll('.counter').forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 gsap.to(counter, {
                     innerText: target,
@@ -395,33 +339,31 @@
                     snap: { innerText: 1 },
                     scrollTrigger: {
                         trigger: counter,
-                        start: "top 90%"
+                        start: "top 95%"
                     }
                 });
             });
 
+            // General Scroll Reveal
             gsap.utils.toArray(".reveal").forEach((el) => {
                 gsap.to(el, {
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 90%",
-                        onEnter: () => gsap.to(el, { 
-                            opacity: 1, 
-                            visibility: "visible", 
-                            y: 0, 
-                            duration: 1.2, 
-                            ease: "power2.out" 
-                        })
-                    }
+                        start: "top 95%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 1,
+                    visibility: "visible",
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out"
                 });
             });
 
             new Swiper('.mainGallery', {
                 loop: true,
-                effect: 'fade',
-                autoplay: { delay: 5000 },
+                autoplay: { delay: 4000 },
                 pagination: { el: '.swiper-pagination', clickable: true },
-                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
             });
         });
     </script>
